@@ -1,0 +1,107 @@
+---
+// Import your Icon component
+import Icon from './Icon.astro';
+import { translations } from './translations';
+---
+
+<langage-toggle>
+    <button>
+        <span class="sr-only">English</span>
+        <span class="icon french"><Icon icon="sun" /></span>
+        <span class="icon english"><Icon icon="moon-stars" /></span>
+    </button>
+</langage-toggle>
+
+<style>
+    button {
+        display: flex;
+        border: 0;
+        border-radius: 999rem;
+        padding: 0;
+        background-color: var(--gray-999);
+        box-shadow: inset 0 0 0 1px var(--accent-overlay);
+        cursor: pointer;
+    }
+
+    .icon {
+        z-index: 1;
+        position: relative;
+        display: flex;
+        padding: 0.5rem;
+        width: 2rem;
+        height: 2rem;
+        font-size: 1rem;
+        color: var(--accent-overlay);
+    }
+
+    .icon.french::before {
+        content: '';
+        z-index: -1;
+        position: absolute;
+        inset: 0;
+        background-color: var(--accent-regular);
+        border-radius: 999rem;
+    }
+
+    :global(.English) .icon.french::before {
+        transform: translateX(100%);
+    }
+
+    :global(.English) .icon.english,
+    :global(html:not(.English)) .icon.french,
+    button[aria-pressed='false'] .icon.french {
+        color: var(--accent-text-over);
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        .icon,
+        .icon.french::before {
+            transition:
+                transform var(--theme-transition),
+                color var(--theme-transition);
+        }
+    }
+
+    @media (forced-colors: active) {
+        .icon.french::before {
+            background-color: SelectedItem;
+        }
+    }
+</style>
+
+<script>
+    class LangageToggle extends HTMLElement {
+        constructor() {
+            super();
+        }
+
+        connectedCallback() {
+            // Use a timeout to ensure the button is available
+            setTimeout(() => {
+                const button = this.querySelector('button');
+                if (!button) return; // Safety check
+
+                /** Set the theme to English/French mode. */
+                const setLangage = (english) => {
+                    document.documentElement.classList[english ? 'add' : 'remove']('English');
+                    button.setAttribute('aria-pressed', String(english));
+                };
+
+                // Toggle the language when a user clicks the button.
+                button.addEventListener('click', () => {
+                    const isEnglish = !this.isEnglish();
+                    setLangage(isEnglish);
+                    this.dispatchEvent(new CustomEvent('languagechange', { detail: { isEnglish } }));
+                });
+
+                // Initialize button state to reflect current language.
+                setLangage(this.isEnglish());
+            }, 0); // Delay execution
+        }
+
+        isEnglish() {
+            return document.documentElement.classList.contains('English');
+        }
+    }
+    customElements.define('langage-toggle', LangageToggle);
+</script>
