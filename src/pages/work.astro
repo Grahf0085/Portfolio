@@ -37,3 +37,31 @@ const projects = (await getCollection('work')).sort(
 		<ContactCTA />
 	</div>
 </BaseLayout>
+
+<script type="module" is:inline>
+
+    const translations = {
+        en: {
+        title: "Test EN"
+        },
+        fr: {
+        title: "Test FR"
+        }
+    };
+
+    let language = 'en';  // Langue par défaut
+    let translation = translations[language] || {};
+
+    document.getElementById('title').textContent = translation.title;
+
+    const handleLanguageChange = (e) => {
+      language = e.detail.isEnglish ? 'fr' : 'en';  // Mise à jour de la langue
+      translation = translations[language] || {};  // Mise à jour des traductions
+
+      // Mise à jour dynamique du contenu
+      document.getElementById('title').textContent = translation.title;
+    };
+
+    // Attacher l'écouteur d'événements après que le composant est défini
+    document.querySelector('langage-toggle').addEventListener('languagechange', handleLanguageChange);
+  </script>

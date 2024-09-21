@@ -23,7 +23,7 @@ import Hero from '../components/Hero.astro';
 			<section>
 				<h2 class="section-title">Background</h2>
 				<div class="content">
-					<p>
+					<p id="p1-about">
 						Lorem ipsum dolor sit amet, <a href="https://astro.build/">Astro</a> makes people happy.
 						Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin nibh nisl condimentum
 						id venenatis a condimentum vitae. Dapibus ultrices in iaculis nunc. Arcu odio ut sem nulla
@@ -118,3 +118,31 @@ import Hero from '../components/Hero.astro';
 		}
 	}
 </style>
+
+<script type="module" is:inline>
+
+    const translations = {
+        en: {
+        p1about: "Test EN"
+        },
+        fr: {
+        p1about: "Test FR"
+        }
+    };
+
+    let language = 'en';  // Langue par défaut
+    let translation = translations[language] || {};
+
+    document.getElementById('p1-about').textContent = translation.p1about;
+
+    const handleLanguageChange = (e) => {
+      language = e.detail.isEnglish ? 'fr' : 'en';  // Mise à jour de la langue
+      translation = translations[language] || {};  // Mise à jour des traductions
+
+      // Mise à jour dynamique du contenu
+      document.getElementById('p1-about').textContent = translation.p1about;
+    };
+
+    // Attacher l'écouteur d'événements après que le composant est défini
+    document.querySelector('langage-toggle').addEventListener('languagechange', handleLanguageChange);
+  </script>

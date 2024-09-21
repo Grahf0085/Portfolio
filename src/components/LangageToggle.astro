@@ -1,7 +1,6 @@
 ---
 // Import your Icon component
 import Icon from './Icon.astro';
-import { translations } from './translations';
 ---
 
 <langage-toggle>
@@ -95,7 +94,7 @@ import { translations } from './translations';
                 });
 
                 // Initialize button state to reflect current language.
-                setLangage(true);
+                setLangage(false);
             }, 0); // Delay execution
         }
 
