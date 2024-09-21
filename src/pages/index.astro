@@ -9,16 +9,12 @@ import Pill from '../components/Pill.astro';
 import PortfolioPreview from '../components/PortfolioPreview.astro';
 import ContactCTA from '../components/ContactCTA.astro';
 import Skills from '../components/Skills.astro';
-import { translations } from '../components/translations.js';
 
 // Content Fetching: List four most recent work projects
 const projects = (await getCollection('work'))
     .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
     .slice(0, 4);
 
-// Fallback to English ('en') as the default language
-let language = 'en';  // This will change based on the toggle
-let translation = translations[language] || {};
 ---
 
 <BaseLayout>
@@ -28,8 +24,8 @@ let translation = translations[language] || {};
         <div class="wrapper stack gap-8 lg:gap-20">
             <header class="hero">
                 <Hero
-                    title={translation?.title || 'Hello, my name is Jeanine White'}
-                    tagline={translation?.tagline || 'I am a Creative Developer who is currently based in Portland, Oregon.'}
+                    title={'Hello, my name is Jeanine White'}
+                    tagline={'I am a Creative Developer who is currently based in Portland, Oregon.'}
                     align="start"
                 >
                     <div class="roles">
@@ -53,8 +49,8 @@ let translation = translations[language] || {};
         <main class="wrapper stack gap-20 lg:gap-48">
             <section class="section with-background with-cta">
                 <header class="section-header stack gap-2 lg:gap-4">
-                    <h3 id="selected-work-header">{translation?.selectedWorkHeader || 'Selected Work'}</h3>
-                    <p id="selected-work-description">{translation?.selectedWorkDescription || 'Take a look below at some of my featured work for clients from the past few years.'}</p>
+                    <h3 id="selected-work-header">{'Selected Work'}</h3>
+                    <p id="selected-work-description">{'Take a look below at some of my featured work for clients from the past few years.'}</p>
                 </header>
 
                 <div class="gallery">
@@ -77,8 +73,8 @@ let translation = translations[language] || {};
 
             <section class="section with-background bg-variant">
                 <header class="section-header stack gap-2 lg:gap-4">
-                    <h3 id="mentions-header">{translation?.mentionsHeader || 'Mentions'}</h3>
-                    <p id="mentions-description">{translation?.mentionsDescription || 'I have been fortunate enough to receive praise for my work in several publications. Take a look below to learn more.'}</p>
+                    <h3 id="mentions-header">{'Mentions'}</h3>
+                    <p id="mentions-description">{'I have been fortunate enough to receive praise for my work in several publications. Take a look below to learn more.'}</p>
                 </header>
 
                 <div class="gallery">
@@ -95,22 +91,52 @@ let translation = translations[language] || {};
 
         <ContactCTA />
     </div>
-
-	<script is:inline>
-		// Define handleLanguageChange globally
-		window.handleLanguageChange = (e) => {
-			language = e.detail.isEnglish ? 'en' : 'fr';  // Update language state
-			translation = translations[language] || {};  // Update the translation object
-
-			// Update the content dynamically
-			document.getElementById('selected-work-header').textContent = translation.selectedWorkHeader;
-			document.getElementById('selected-work-description').textContent = translation.selectedWorkDescription;
-			document.getElementById('mentions-header').textContent = translation.mentionsHeader;
-			document.getElementById('mentions-description').textContent = translation.mentionsDescription;
-		};
-
-		// Attach the event listener to langage-toggle after it has been defined
-		document.querySelector('langage-toggle').addEventListener('languagechange', handleLanguageChange);
-	</script>
-
 </BaseLayout>
+
+<script type="module" is:inline>
+
+    const translations = {
+        en: {
+        title: "Hello, my name is Jeanine Whitessssssssssssssssss",
+        tagline: "I am a Creative Developer who is currently based in Portland, Oregon.",
+        selectedWorkHeader: "Selected Work",
+        selectedWorkDescription: "Take a look below at some of my featured work for clients from the past few years.",
+        mentionsHeader: "Mentions",
+        mentionsDescription: "I have been fortunate enough to receive praise for my work in several publications. Take a look below to learn more.",
+        },
+        fr: {
+        title: "Bonjour, je m'appelle Jeanine White",
+        tagline: "Je suis une développeuse créative basée à Portland, Oregon.",
+        selectedWorkHeader: "Travail Sélectionné",
+        selectedWorkDescription: "Découvrez ci-dessous quelques-unes de mes réalisations pour des clients au cours des dernières années.",
+        mentionsHeader: "Mentions",
+        mentionsDescription: "J'ai eu la chance de recevoir des éloges pour mon travail dans plusieurs publications. Découvrez ci-dessous pour en savoir plus.",
+        }
+    };
+
+    let language = 'en';  // Langue par défaut
+    let translation = translations[language] || {};
+
+    document.getElementById('title').textContent = translation.title;
+    document.getElementById('tagline').textContent = translation.tagline;
+    document.getElementById('selected-work-header').textContent = translation.selectedWorkHeader;
+    document.getElementById('selected-work-description').textContent = translation.selectedWorkDescription;
+    document.getElementById('mentions-header').textContent = translation.mentionsHeader;
+    document.getElementById('mentions-description').textContent = translation.mentionsDescription;
+  
+    const handleLanguageChange = (e) => {
+      language = e.detail.isEnglish ? 'en' : 'fr';  // Mise à jour de la langue
+      translation = translations[language] || {};  // Mise à jour des traductions
+  
+      // Mise à jour dynamique du contenu
+      document.getElementById('title').textContent = translation.title;
+      document.getElementById('tagline').textContent = translation.tagline;
+      document.getElementById('selected-work-header').textContent = translation.selectedWorkHeader;
+      document.getElementById('selected-work-description').textContent = translation.selectedWorkDescription;
+      document.getElementById('mentions-header').textContent = translation.mentionsHeader;
+      document.getElementById('mentions-description').textContent = translation.mentionsDescription;
+    };
+  
+    // Attacher l'écouteur d'événements après que le composant est défini
+    document.querySelector('langage-toggle').addEventListener('languagechange', handleLanguageChange);
+  </script>
