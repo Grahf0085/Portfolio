@@ -22,12 +22,12 @@ const projects = (await getCollection('work'))
         <div class="wrapper stack gap-8 lg:gap-20">
             <header class="hero">
                 <Hero
-                    title={'Hello, my name is Jeanine White'}
-                    tagline={'I am a Creative Developer who is currently based in Portland, Oregon.'}
+                    title={' Title '}
+                    tagline={' Tagline '}
                     align="start"
                 >
                     <div class="roles">
-                        <Pill><Icon icon="code" size="1.33em" /> Developer</Pill>
+                        <Pill><Icon icon="code" size="1.33em"/> Developer</Pill>
                         <Pill><Icon icon="microphone-stage" size="1.33em" /> Speaker</Pill>
                         <Pill><Icon icon="pencil-line" size="1.33em" /> Writer</Pill>
                     </div>
@@ -47,8 +47,8 @@ const projects = (await getCollection('work'))
         <main class="wrapper stack gap-20 lg:gap-48">
             <section class="section with-background with-cta">
                 <header class="section-header stack gap-2 lg:gap-4">
-                    <h3 id="selected-work-header">{'Selected Work'}</h3>
-                    <p id="selected-work-description">{'Take a look below at some of my featured work for clients from the past few years.'}</p>
+                    <h3 id="selected-work-header">{' '}</h3>
+                    <p id="selected-work-description">{' '}</p>
                 </header>
 
                 <div class="gallery">
@@ -66,23 +66,6 @@ const projects = (await getCollection('work'))
                         View All
                         <Icon icon="arrow-right" size="1.2em" />
                     </CallToAction>
-                </div>
-            </section>
-
-            <section class="section with-background bg-variant">
-                <header class="section-header stack gap-2 lg:gap-4">
-                    <h3 id="mentions-header">{'Mentions'}</h3>
-                    <p id="mentions-description">{'I have been fortunate enough to receive praise for my work in several publications. Take a look below to learn more.'}</p>
-                </header>
-
-                <div class="gallery">
-                    <Grid variant="small">
-                        {['Medium', 'BuzzFeed', 'The Next Web', 'awwwards.', 'TechCrunch'].map((brand) => (
-                            <li class="mention-card">
-                                <p>{brand}</p>
-                            </li>
-                        ))}
-                    </Grid>
                 </div>
             </section>
         </main>
@@ -238,24 +221,41 @@ const projects = (await getCollection('work'))
 
 <script type="module" is:inline>
 
+
     const translations = {
         en: {
 		pagename: "Home",
         title: "Hello, my name is Julien Fabregoule",
         tagline: "I am a Creative Developer who is currently based in Portland, Oregon.",
+		Skill1: "Skill EN1",
+		Skill1Desc: "Skill Desc EN1",
+		Skill2: "Skill EN2",
+		Skill2Desc: "Skill Desc EN2",
+		Skill3: "Skill EN3",
+		Skill3Desc: "Skill Desc EN3",
         selectedWorkHeader: "Selected Work",
         selectedWorkDescription: "Take a look below at some of my featured work for clients from the past few years.",
-        mentionsHeader: "Mentions",
-        mentionsDescription: "I have been fortunate enough to receive praise for my work in several publications. Take a look below to learn more.",
+		callToAction: "View All",
+		callToActionLong: "Interested in working together ?",
+		footerText: "Designed & Developed in Lyon",
+		footerCopyright: "2024 Julien Fabregoule"
         },
         fr: {
 		pagename: "Home",
         title: "Bonjour, je m'appelle Julien Fabregoule",
-        tagline: "Je suis une développeuse créative basée à Portland, Oregon.",
-        selectedWorkHeader: "Travail Sélectionné",
-        selectedWorkDescription: "Découvrez ci-dessous quelques-unes de mes réalisations pour des clients au cours des dernières années.",
-        mentionsHeader: "Mentions",
-        mentionsDescription: "J'ai eu la chance de recevoir des éloges pour mon travail dans plusieurs publications. Découvrez ci-dessous pour en savoir plus.",
+        tagline: "Je suis un développeur créatif basé à Lyon, France.",
+		Skill1: "Skill FR1",
+		Skill1Desc: "Skill Desc FR1",
+		Skill2: "Skill FR2",
+		Skill2Desc: "Skill Desc FR2",
+		Skill3: "Skill FR3",
+		Skill3Desc: "Skill Desc FR3",
+        selectedWorkHeader: "Mes créations",
+        selectedWorkDescription: "Découvrez ci-dessous quelques-unes de mes réalisations au cours des dernières années.",
+		callToAction: "Voir Tout",
+		callToActionLong: "Vous souhaitez travailler avec moi ?",
+		footerText: "Designé & développé à Lyon",
+		footerCopyright: "2024 Julien Fabregoule"
         }
     };
 
@@ -265,23 +265,39 @@ const projects = (await getCollection('work'))
 	document.getElementById('page-name').textContent = translation.pagename;
     document.getElementById('title').textContent = translation.title;
     document.getElementById('tagline').textContent = translation.tagline;
+	document.getElementById('Skill1').textContent = translation.Skill1;
+	document.getElementById('Skill1Desc').textContent = translation.Skill1Desc;
+	document.getElementById('Skill2').textContent = translation.Skill2;
+	document.getElementById('Skill2Desc').textContent = translation.Skill2Desc;
+	document.getElementById('Skill3').textContent = translation.Skill3;
+	document.getElementById('Skill3Desc').textContent = translation.Skill3Desc;
     document.getElementById('selected-work-header').textContent = translation.selectedWorkHeader;
     document.getElementById('selected-work-description').textContent = translation.selectedWorkDescription;
-    document.getElementById('mentions-header').textContent = translation.mentionsHeader;
-    document.getElementById('mentions-description').textContent = translation.mentionsDescription;
+	document.getElementById('call-to-action').textContent = translation.callToAction;
+	document.getElementById('call-to-action-long').textContent = translation.callToActionLong;
+	document.getElementById('footer-text').textContent = translation.footerText;
+	document.getElementById('footer-copyright').textContent = translation.footerCopyright;
 
     const handleLanguageChange = (e) => {
-      language = e.detail.isEnglish ? 'fr' : 'en';  // Mise à jour de la langue
-      translation = translations[language] || {};  // Mise à jour des traductions
+      language = e.detail.isEnglish ? 'fr' : 'en';
+      translation = translations[language] || {};
 
       // Mise à jour dynamique du contenu
-	  document.getElementById('page-name').textContent = translation.pagename;
-      document.getElementById('title').textContent = translation.title;
-      document.getElementById('tagline').textContent = translation.tagline;
-      document.getElementById('selected-work-header').textContent = translation.selectedWorkHeader;
-      document.getElementById('selected-work-description').textContent = translation.selectedWorkDescription;
-      document.getElementById('mentions-header').textContent = translation.mentionsHeader;
-      document.getElementById('mentions-description').textContent = translation.mentionsDescription;
+	document.getElementById('page-name').textContent = translation.pagename;
+	document.getElementById('title').textContent = translation.title;
+	document.getElementById('tagline').textContent = translation.tagline;
+	document.getElementById('Skill1').textContent = translation.Skill1;
+	document.getElementById('Skill1Desc').textContent = translation.Skill1Desc;
+	document.getElementById('Skill2').textContent = translation.Skill2;
+	document.getElementById('Skill2Desc').textContent = translation.Skill2Desc;
+	document.getElementById('Skill3').textContent = translation.Skill3;
+	document.getElementById('Skill3Desc').textContent = translation.Skill3Desc;
+	document.getElementById('selected-work-header').textContent = translation.selectedWorkHeader;
+	document.getElementById('selected-work-description').textContent = translation.selectedWorkDescription;
+	document.getElementById('call-to-action').textContent = translation.callToAction;
+	document.getElementById('call-to-action-long').textContent = translation.callToActionLong;
+	document.getElementById('footer-text').textContent = translation.footerText;
+	document.getElementById('footer-copyright').textContent = translation.footerCopyright;
     };
 
     // Attacher l'écouteur d'événements après que le composant est défini

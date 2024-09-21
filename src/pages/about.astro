@@ -21,21 +21,21 @@ import Hero from '../components/Hero.astro';
 			</Hero>
 
 			<section>
-				<h2 class="section-title">Background</h2>
+				<h2 class="section-title" id="s1-about">Background</h2>
 				<div class="content">
-					<p id="p1-about">
+					<p id="s1-p1-about">
 						Lorem ipsum dolor sit amet, <a href="https://astro.build/">Astro</a> makes people happy.
 						Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin nibh nisl condimentum
 						id venenatis a condimentum vitae. Dapibus ultrices in iaculis nunc. Arcu odio ut sem nulla
 						pharetra diam sit amet. Diam quis enim lobortis scelerisque fermentum dui faucibus in ornare.
 					</p>
-					<p>
+					<p id="s1-p2-about">
 						Arcu dui vivamus arcu felis bibendum ut tristique et egestas. Eget gravida cum sociis
 						natoque penatibus. Cras fermentum odio eu feugiat pretium nibh. Proin nibh nisl
 						condimentum id venenatis. Porta nibh venenatis cras sed felis eget velit. Id diam vel
 						quam elementum pulvinar etiam non.
 					</p>
-					<p>
+					<p id="s1-p3-about">
 						Ultrices tincidunt arcu non sodales neque sodales ut. Sed enim ut sem viverra aliquet
 						eget sit amet. Lacus luctus accumsan tortor posuere ac ut consequat semper viverra.
 						Viverra accumsan in nisl nisi scelerisque eu ultrices. In massa tempor nec feugiat nisl
@@ -44,15 +44,15 @@ import Hero from '../components/Hero.astro';
 				</div>
 			</section>
 			<section>
-				<h2 class="section-title">Education</h2>
+				<h2 class="section-title" id="s2-about">Education</h2>
 				<div class="content">
-					<p>Corporis voluptates tenetur laudantium.</p>
+					<p id="s2-p1-about">Corporis voluptates tenetur laudantium.</p>
 				</div>
 			</section>
 			<section>
-				<h2 class="section-title">Skills</h2>
+				<h2 class="section-title" id="s3-about">Skills</h2>
 				<div class="content">
-					<p>officia unde omnis</p>
+					<p id="s3-p1-about">officia unde omnis</p>
 				</div>
 			</section>
 		</main>
@@ -123,24 +123,72 @@ import Hero from '../components/Hero.astro';
 
     const translations = {
         en: {
-        p1about: "Test EN"
+		title: "About",
+		tagline: "Thanks for stopping by. Read below to learn more about myself and my background.",
+        s1about: "Backgroud",
+		s1p1about: "s1p1en",
+		s1p2about: "s1p2en",
+		s1p3about: "s1p3en",
+		s2about: "Education",
+		s2p1about: "s2p1en",
+		s3about: "Skills",
+		s3p1about: "s3p1en",
+		callToActionLong: "Interested in working together?",
+		footerText: "Designed & Developed in Lyon",
+		footerCopyright: "2024 Julien Fabregoule"
         },
         fr: {
-        p1about: "Test FR"
+		title: "A propos",
+		tagline: "FR",
+		s1about: "Parcours",
+		s1p1about: "s1p1fr",
+		s1p2about: "s1p2fr",
+		s1p3about: "s1p3fr",
+		s2about: "Etudes",
+		s2p1about: "s2p1fr",
+		s3about: "Compétences",
+		s3p1about: "s3p1fr",
+		callToActionLong: "Vous souhaitez travailler avec moi ?",
+		footerText: "Designé & Développé à Lyon",
+		footerCopyright: "2024 Julien Fabregoule"
         }
     };
 
     let language = 'en';  // Langue par défaut
     let translation = translations[language] || {};
 
-    document.getElementById('p1-about').textContent = translation.p1about;
+	document.getElementById('title').textContent = translation.title;
+	document.getElementById('tagline').textContent = translation.tagline;
+    document.getElementById('s1-about').textContent = translation.s1about;
+	document.getElementById('s1-p1-about').textContent = translation.s1p1about;
+	document.getElementById('s1-p2-about').textContent = translation.s1p2about;
+	document.getElementById('s1-p3-about').textContent = translation.s1p3about;
+	document.getElementById('s2-about').textContent = translation.s2about;
+	document.getElementById('s2-p1-about').textContent = translation.s2p1about;
+	document.getElementById('s3-about').textContent = translation.s3about;
+	document.getElementById('s3-p1-about').textContent = translation.s3p1about;
+	document.getElementById('call-to-action-long').textContent = translation.callToActionLong;
+	document.getElementById('footer-text').textContent = translation.footerText;
+	document.getElementById('footer-copyright').textContent = translation.footerCopyright;
 
     const handleLanguageChange = (e) => {
       language = e.detail.isEnglish ? 'fr' : 'en';  // Mise à jour de la langue
       translation = translations[language] || {};  // Mise à jour des traductions
 
       // Mise à jour dynamique du contenu
-      document.getElementById('p1-about').textContent = translation.p1about;
+	document.getElementById('title').textContent = translation.title;
+	document.getElementById('tagline').textContent = translation.tagline;
+	document.getElementById('s1-about').textContent = translation.s1about;
+	document.getElementById('s1-p1-about').textContent = translation.s1p1about;
+	document.getElementById('s1-p2-about').textContent = translation.s1p2about;
+	document.getElementById('s1-p3-about').textContent = translation.s1p3about;
+	document.getElementById('s2-about').textContent = translation.s2about;
+	document.getElementById('s2-p1-about').textContent = translation.s2p1about;
+	document.getElementById('s3-about').textContent = translation.s3about;
+	document.getElementById('s3-p1-about').textContent = translation.s3p1about;
+	document.getElementById('call-to-action-long').textContent = translation.callToActionLong;
+	document.getElementById('footer-text').textContent = translation.footerText;
+	document.getElementById('footer-copyright').textContent = translation.footerCopyright;
     };
 
     // Attacher l'écouteur d'événements après que le composant est défini

@@ -42,10 +42,19 @@ const projects = (await getCollection('work')).sort(
 
     const translations = {
         en: {
-        title: "Test EN"
+        title: "Test EN",
+		tagline: "Desc EN",
+		callToActionLong: "Interested in working together?",
+		footerText: "Designed & Developed in Lyon",
+		footerCopyright: "2024 Julien Fabregoule"
+
         },
         fr: {
-        title: "Test FR"
+        title: "Test FR",
+		tagline: "Desc FR",
+		callToActionLong: "Vous souhaitez travailler avec moi ?",
+		footerText: "Designé & Développé à Lyon",
+		footerCopyright: "2024 Julien Fabregoule"
         }
     };
 
@@ -53,6 +62,10 @@ const projects = (await getCollection('work')).sort(
     let translation = translations[language] || {};
 
     document.getElementById('title').textContent = translation.title;
+	document.getElementById('tagline').textContent = translation.tagline;
+	document.getElementById('call-to-action-long').textContent = translation.callToActionLong;
+	document.getElementById('footer-text').textContent = translation.footerText;
+	document.getElementById('footer-copyright').textContent = translation.footerCopyright;
 
     const handleLanguageChange = (e) => {
       language = e.detail.isEnglish ? 'fr' : 'en';  // Mise à jour de la langue
@@ -60,6 +73,10 @@ const projects = (await getCollection('work')).sort(
 
       // Mise à jour dynamique du contenu
       document.getElementById('title').textContent = translation.title;
+	  document.getElementById('tagline').textContent = translation.tagline;
+	  document.getElementById('call-to-action-long').textContent = translation.callToActionLong;
+	  document.getElementById('footer-text').textContent = translation.footerText;
+	document.getElementById('footer-copyright').textContent = translation.footerCopyright;
     };
 
     // Attacher l'écouteur d'événements après que le composant est défini
