@@ -81,7 +81,7 @@ import Icon from './Icon.astro';
                 if (!button) return; // Safety check
 
                 /** Set the theme to English/French mode. */
-                const setLangage = (english) => {
+                const setLangage = (english : boolean) => {
                     document.documentElement.classList[english ? 'add' : 'remove']('English');
                     button.setAttribute('aria-pressed', String(english));
                 };
