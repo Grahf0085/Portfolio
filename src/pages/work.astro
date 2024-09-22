@@ -42,16 +42,18 @@ const projects = (await getCollection('work')).sort(
 
     const translations = {
         en: {
-        title: "Test EN",
-		tagline: "Desc EN",
+		pagename: "My Work | Julien Fabregoule",
+        title: "My Work",
+		tagline: "Explore a diverse range of projects I've worked on, from programming and game development to 3D real-time engines. Each creation reflects my passion for technology, creativity, and problem-solving.",
 		callToActionLong: "Interested in working together?",
 		footerText: "Designed & Developed in Lyon",
 		footerCopyright: "2024 Julien Fabregoule"
 
         },
         fr: {
-        title: "Test FR",
-		tagline: "Desc FR",
+		pagename: "Mes Créations | Julien Fabregoule",
+        title: "Mes Créations",
+		tagline: "Découvrez une variété de projets sur lesquels j'ai travaillé, allant de la programmation au développement de jeux, en passant par les moteurs 3D temps réel. Chaque création reflète ma passion pour la technologie, la créativité et la résolution de problèmes.",
 		callToActionLong: "Vous souhaitez travailler avec moi ?",
 		footerText: "Designé & Développé à Lyon",
 		footerCopyright: "2024 Julien Fabregoule"
@@ -61,6 +63,7 @@ const projects = (await getCollection('work')).sort(
     let language = 'en';  // Langue par défaut
     let translation = translations[language] || {};
 
+	document.getElementById('page-name').textContent = translation.pagename;
     document.getElementById('title').textContent = translation.title;
 	document.getElementById('tagline').textContent = translation.tagline;
 	document.getElementById('call-to-action-long').textContent = translation.callToActionLong;
@@ -72,6 +75,7 @@ const projects = (await getCollection('work')).sort(
       translation = translations[language] || {};  // Mise à jour des traductions
 
       // Mise à jour dynamique du contenu
+	  document.getElementById('page-name').textContent = translation.pagename;
       document.getElementById('title').textContent = translation.title;
 	  document.getElementById('tagline').textContent = translation.tagline;
 	  document.getElementById('call-to-action-long').textContent = translation.callToActionLong;
