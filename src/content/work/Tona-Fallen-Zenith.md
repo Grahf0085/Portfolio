@@ -1,7 +1,8 @@
 ---
-title: Markdown Mystery Tour
-publishDate: 2020-03-02 00:00:00
-img: /assets/stock-1.jpg
+id: 0
+title: Tona Fallen Zenith
+publishDate: 2024-12-31 00:00:00
+img: /assets/Tona-Fallen-Zenith.jpg
 img_alt: Iridescent ripples of a bright blue and pink liquid
 description: |
   We designed a whodunnit-style game to introduce Markdown formatting. Suspense — suspicion — syntax!

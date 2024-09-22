@@ -17,11 +17,13 @@ const { variant } = Astro.props;
 		gap: 1rem;
 		list-style: none;
 		padding: 0;
+		direction: rtl;
 	}
 
 	.grid.small {
 		grid-template-columns: 1fr 1fr;
 		gap: 1.5rem;
+		direction: rtl;
 	}
 
 	/* If last row contains only one item, make it span both columns. */
@@ -41,7 +43,7 @@ const { variant } = Astro.props;
 		}
 
 		/* Shift first item in each row vertically to create staggered effect. */
-		.grid.offset > :global(:nth-child(odd)) {
+		.grid.offset > :global(:nth-child(even)) {
 			transform: translateY(var(--row-offset));
 		}
 

@@ -31,14 +31,15 @@ const { Content } = await entry.render();
 	<div class="stack gap-20">
 		<div class="stack gap-15">
 			<header>
+				<input id="page-id" type="hidden" value={entry.data.id}>
 				<div class="wrapper stack gap-2">
 					<a class="back-link" href="/work/"><Icon icon="arrow-left" /> Work</a>
 					<Hero title={entry.data.title} align="start">
-						<div class="details">
+						<div id="work-details" class="details">
 							<div class="tags">
 								{entry.data.tags.map((t) => <Pill>{t}</Pill>)}
 							</div>
-							<p class="description">{entry.data.description}</p>
+							<p id="work-description" class="description">{entry.data.description}</p>
 						</div>
 					</Hero>
 				</div>
@@ -46,7 +47,7 @@ const { Content } = await entry.render();
 			<main class="wrapper">
 				<div class="stack gap-10 content">
 					{entry.data.img && <img src={entry.data.img} alt={entry.data.img_alt || ''} />}
-					<div class="content">
+					<div id="content" class="content">
 						<Content />
 					</div>
 				</div>
@@ -149,3 +150,100 @@ const { Content } = await entry.render();
 		}
 	}
 </style>
+
+<script type="module" is:inline>
+
+    const translations = [{
+        en: {
+		title: "Tona Fallen Zenith",
+		workdescription: "Tona Fallen Zenith Desc EN",
+		content: "TEST EN1",
+        },
+        fr: {
+		title: "Tona Fallen Zenith",
+		workdescription: "Tona Fallen Zenith Desc FR",
+		content: "TEST FR1",
+        }
+    },
+	{
+        en: {
+		title: "DirectX12 Game Engine",
+		workdescription: "DirectX12 Game Engine EN",
+		content: "TEST EN1",
+        },
+        fr: {
+		title: "Moteur de Jeu DirectX12",
+		workdescription: "Moteur de Jeu DirectX12 Desc FR",
+		content: "TEST FR1",
+        }
+    },
+	{
+        en: {
+		title: "Unity Boss Fight",
+		workdescription: "Unity Boss Fight Desc EN",
+		content: "TEST EN1",
+        },
+        fr: {
+		title: "Combat de Boss Unity",
+		workdescription: "Combat de Boss Unity Desc FR",
+		content: "TEST FR1",
+        }
+    },
+	{
+        en: {
+		title: "Minecraft Brick Breaker",
+		workdescription: "Minecraft Brick Breaker Desc EN",
+		content: "TEST EN1",
+        },
+        fr: {
+		title: "Casse Briques Minecraft",
+		workdescription: "Casse Briques Minecraft Desc FR",
+		content: "TEST FR1",
+        }
+    },
+	{
+        en: {
+		title: "Multiplayer Project",
+		workdescription: "Multiplayer Project Desc EN",
+		content: "TEST EN1",
+        },
+        fr: {
+		title: "Projet Multijoueur",
+		workdescription: "Projet Multijoueur Desc FR",
+		content: "TEST FR1",
+        }
+    },
+	{
+        en: {
+		title: "3DVerse Prototype",
+		workdescription: "3DVerse Prototype Desc EN",
+		content: "TEST EN1",
+        },
+        fr: {
+		title: "Prototype 3DVerse",
+		workdescription: "Prototype 3DVerse Desc FR",
+		content: "TEST FR1",
+        }
+    },];
+
+	let id = document.getElementById('page-id').value;
+    let language = 'en';  // Langue par défaut
+    let translation = translations[id][language] || {};
+
+	document.getElementById('content').textContent = translation.content;
+	document.getElementById('title').textContent = translation.title;
+	document.getElementById('work-description').textContent = translation.workdescription;
+
+    const handleLanguageChange = (e) => {
+      language = e.detail.isEnglish ? 'fr' : 'en';
+      translation = translations[id][language] || {};
+
+      // Mise à jour dynamique du contenu
+	  document.getElementById('content').textContent = translation.content;
+	  document.getElementById('title').textContent = translation.title;
+	  document.getElementById('work-description').textContent = translation.workdescription;
+    };
+
+    // Attacher l'écouteur d'événements après que le composant est défini
+    document.querySelector('langage-toggle').addEventListener('languagechange', handleLanguageChange);
+  </script>
