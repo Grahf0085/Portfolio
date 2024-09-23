@@ -45,7 +45,7 @@ const projects = (await getCollection('work')).sort(
 		pagename: "My Work | Julien Fabregoule",
         title: "My Work",
 		tagline: "Explore a diverse range of projects I've worked on, from programming and game development to 3D real-time engines. Each creation reflects my passion for technology, creativity, and problem-solving.",
-		callToActionLong: "Interested in working together?",
+		callToActionLong: "Interested in working together or testing some of my work ?",
 		footerText: "Designed & Developed in Lyon",
 		footerCopyright: "2024 Julien Fabregoule"
 
@@ -54,13 +54,16 @@ const projects = (await getCollection('work')).sort(
 		pagename: "Mes Créations | Julien Fabregoule",
         title: "Mes Créations",
 		tagline: "Découvrez une variété de projets sur lesquels j'ai travaillé, allant de la programmation au développement de jeux, en passant par les moteurs 3D temps réel. Chaque création reflète ma passion pour la technologie, la créativité et la résolution de problèmes.",
-		callToActionLong: "Vous souhaitez travailler avec moi ?",
+		callToActionLong: "Vous souhaitez travailler avec moi ou tester certaines de mes créations ?",
 		footerText: "Designé & Développé à Lyon",
 		footerCopyright: "2024 Julien Fabregoule"
         }
     };
 
-    let language = 'en';  // Langue par défaut
+    const langageToggle = document.querySelector('langage-toggle');
+    const isEnglish = langageToggle.isEnglish(); // Vérifie si c'est en anglais
+
+    let language = isEnglish ? 'en' : 'fr';
     let translation = translations[language] || {};
 
 	document.getElementById('page-name').textContent = translation.pagename;
@@ -71,7 +74,7 @@ const projects = (await getCollection('work')).sort(
 	document.getElementById('footer-copyright').textContent = translation.footerCopyright;
 
     const handleLanguageChange = (e) => {
-      language = e.detail.isEnglish ? 'fr' : 'en';  // Mise à jour de la langue
+      language = e.detail.isEnglish ? 'en' : 'fr';  // Mise à jour de la langue
       translation = translations[language] || {};  // Mise à jour des traductions
 
       // Mise à jour dynamique du contenu

@@ -6,8 +6,8 @@ import Icon from './Icon.astro';
 <langage-toggle>
     <button>
         <span class="sr-only">English</span>
-        <span class="icon french"><Icon icon="uk-logo" /></span>
-        <span class="icon english"><Icon icon="france-logo" /></span>
+        <span class="icon french"><Icon icon="france-logo" /></span>
+        <span class="icon english"><Icon icon="uk-logo" /></span>
     </button>
 </langage-toggle>
 
@@ -94,7 +94,7 @@ import Icon from './Icon.astro';
                 });
 
                 // Initialize button state to reflect current language.
-                setLangage(false);
+                setLangage(this.isEnglish());
             }, 0); // Delay execution
         }
 

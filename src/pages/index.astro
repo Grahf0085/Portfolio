@@ -28,13 +28,13 @@ const projects = (await getCollection('work')).sort(
                 >
                     <div class="roles">
                         <Pill><Icon icon="code" size="1.33em"/> Developer</Pill>
-                        <Pill><Icon icon="microphone-stage" size="1.33em" /> Speaker</Pill>
-                        <Pill><Icon icon="pencil-line" size="1.33em" /> Writer</Pill>
+                        <Pill><Icon icon="project" size="1.33em" /> Project Management</Pill>
+                        <Pill><Icon icon="shaking-hand" size="1.33em" /> Communication Skills</Pill>
                     </div>
                 </Hero>
 
                 <img
-                    alt="Jeanine White smiling in a red plaid shirt and tortoise shell glasses"
+                    alt="Julien profile picture"
                     width="480"
                     height="620"
                     src="/assets/portrait.jpg"
@@ -236,7 +236,7 @@ const projects = (await getCollection('work')).sort(
         selectedWorkHeader: "Selected Work",
         selectedWorkDescription: "Take a look below at some of my featured work from the past few years.",
 		callToAction: "View All",
-		callToActionLong: "Interested in working together ?",
+		callToActionLong: "Interested in working together or testing some of my work ?",
 		footerText: "Designed & Developed in Lyon",
 		footerCopyright: "2024 Julien Fabregoule"
         },
@@ -253,13 +253,16 @@ const projects = (await getCollection('work')).sort(
         selectedWorkHeader: "Mes créations",
         selectedWorkDescription: "Découvrez ci-dessous quelques-unes de mes réalisations au cours des dernières années.",
 		callToAction: "Voir Tout",
-		callToActionLong: "Vous souhaitez travailler avec moi ?",
+		callToActionLong: "Vous souhaitez travailler avec moi ou tester certaines de mes créations ?",
 		footerText: "Designé & développé à Lyon",
 		footerCopyright: "2024 Julien Fabregoule"
         }
     };
 
-    let language = 'en';  // Langue par défaut
+    const langageToggle = document.querySelector('langage-toggle');
+    const isEnglish = langageToggle.isEnglish();
+
+    let language = isEnglish ? 'en' : 'fr';
     let translation = translations[language] || {};
 
 	document.getElementById('page-name').textContent = translation.pagename;
@@ -279,7 +282,7 @@ const projects = (await getCollection('work')).sort(
 	document.getElementById('footer-copyright').textContent = translation.footerCopyright;
 
     const handleLanguageChange = (e) => {
-      language = e.detail.isEnglish ? 'fr' : 'en';
+      language = e.detail.isEnglish ? 'en' : 'fr';
       translation = translations[language] || {};
 
       // Mise à jour dynamique du contenu

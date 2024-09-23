@@ -8,6 +8,8 @@ export const collections = {
 			title: z.string(),
 			description: z.string(),
 			githublink: z.string(),
+			steamlink: z.string(),
+			website: z.string(),
 			publishDate: z.coerce.date(),
 			tags: z.array(z.string()),
 			img: z.string(),

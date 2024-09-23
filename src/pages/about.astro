@@ -5,7 +5,7 @@ import ContactCTA from '../components/ContactCTA.astro';
 import Hero from '../components/Hero.astro';
 ---
 
-<BaseLayout title="About | Jeanine White" description="About Jeanine White Lorem Ipsum">
+<BaseLayout title="About | Julien Fabregoule" description=" ">
 	<div class="stack gap-20">
 		<main class="wrapper about">
 			<Hero
@@ -122,7 +122,7 @@ import Hero from '../components/Hero.astro';
 		s2p3about: "Finally, I joined Gaming Campus at G.Tech, where I had the opportunity to apply these skills on real-world, ambitious projects and to further develop my creative mindset. This continues to drive me to bring to life worlds that, one day, may captivate players as much as certain games have captivated me.",
 		s3about: "Skills",
 		s3p1about: "Throughout my journey, I have developed solid expertise in various programming languages, notably C, C++, and C#. My experience with Unity has deepened through numerous projects, particularly in real-time 3D and DirectX12. These skills allow me to contribute effectively to the creation of innovative video games while continuously pushing the boundaries of my technical abilities.",
-		callToActionLong: "Interested in working together?",
+		callToActionLong: "Interested in working together or testing some of my work ?",
 		footerText: "Designed & Developed in Lyon",
 		footerCopyright: "2024 Julien Fabregoule"
         },
@@ -139,13 +139,16 @@ import Hero from '../components/Hero.astro';
 		s2p3about: "Enfin, j’ai rejoint le Gaming Campus à l’école G.Tech, où j’ai eu l’opportunité de mettre en pratique ces acquis sur des projets concrets et ambitieux et de développer mon esprit créatif, me motivant toujours plus à travailler pour donner vie à des univers qui pourront, peut être un jour, émerveiller comme certains jeux m’ont émerveillé.",
 		s3about: "Compétences",
 		s3p1about: "Au fil de mon parcours, j’ai développé une expertise solide dans plusieurs langages de programmation, notamment en C, C++, et C#. Mon expérience sur Unity s’est particulièrement enrichie au travers de nombreux projets, notamment en 3D temps réel et en DirectX12. Ces compétences me permettent aujourd'hui de contribuer efficacement à la réalisation de jeux vidéo innovants, tout en continuant à explorer et à repousser mes propres limites techniques.",
-		callToActionLong: "Vous souhaitez travailler avec moi ?",
+		callToActionLong: "Vous souhaitez travailler avec moi ou tester certaines de mes créations ?",
 		footerText: "Designé & Développé à Lyon",
 		footerCopyright: "2024 Julien Fabregoule"
         }
     };
 
-    let language = 'en';  // Langue par défaut
+    const langageToggle = document.querySelector('langage-toggle');
+    const isEnglish = langageToggle.isEnglish(); // Vérifie si c'est en anglais
+
+    let language = isEnglish ? 'en' : 'fr';
     let translation = translations[language] || {};
 
 	document.getElementById('title').textContent = translation.title;
@@ -165,7 +168,7 @@ import Hero from '../components/Hero.astro';
 	document.getElementById('footer-copyright').textContent = translation.footerCopyright;
 
     const handleLanguageChange = (e) => {
-      language = e.detail.isEnglish ? 'fr' : 'en';  // Mise à jour de la langue
+      language = e.detail.isEnglish ? 'en' : 'fr';  // Mise à jour de la langue
       translation = translations[language] || {};  // Mise à jour des traductions
 
       // Mise à jour dynamique du contenu
