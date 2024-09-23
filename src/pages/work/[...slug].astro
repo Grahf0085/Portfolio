@@ -40,6 +40,9 @@ const { Content } = await entry.render();
 								{entry.data.tags.map((t) => <Pill>{t}</Pill>)}
 							</div>
 							<p id="work-description" class="description">{entry.data.description}</p>
+							<a href={entry.data.githublink} target="_blank" class="github-link" style={{ display: entry.data.githublink ? 'flex' : 'none' }}>
+								<Icon icon="github-logo" />
+							</a>
 						</div>
 					</Hero>
 				</div>
@@ -47,7 +50,7 @@ const { Content } = await entry.render();
 			<main class="wrapper">
 				<div class="stack gap-10 content">
 					{entry.data.img && <img src={entry.data.img} alt={entry.data.img_alt || ''} />}
-					<div id="content" class="content">
+					<div id="content" class="content" >
 						<Content />
 					</div>
 				</div>
@@ -149,88 +152,232 @@ const { Content } = await entry.render();
 			font-size: var(--text-2xl);
 		}
 	}
+	.github-link {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    font-size: 5rem;
+    color: var(--gray-500);
+    transition: color 0.3s;
+}
+
+.github-link:hover {
+    color: var(--accent-color);
+}
 </style>
 
 <script type="module" is:inline>
 
-    const translations = [{
-        en: {
-		title: "Tona Fallen Zenith",
-		workdescription: "Tona Fallen Zenith Desc EN",
-		content: "TEST EN1",
-        },
-        fr: {
-		title: "Tona Fallen Zenith",
-		workdescription: "Tona Fallen Zenith Desc FR",
-		content: "TEST FR1",
-        }
+const translations = [{
+    en: {
+        title: "Tona Fallen Zenith",
+        workdescription: "Project management and development of a Unity demo within a multidisciplinary team of 17 people.",
+        content: `
+            <p><strong>Project Lead:</strong> Tona Fallen Zenith</p>
+            <p>As both the Technical Lead and Project Lead, I managed a team of 17 students at Blue Mango Studio to develop a 3D action-adventure game inspired by Aztec culture. This project, part of our studies at Gaming Campus, was a key opportunity for me to refine my skills in project management and the development of complex gameplay systems.</p>
+            <p>My key responsibilities included:</p>
+            <ul>
+                <li>Overseeing the entire team, ensuring smooth coordination between the art, development, and marketing divisions.</li>
+                <li>Leading the technical development, supervising 3D environment creation, gameplay mechanics implementation, and AI combat system design.</li>
+                <li>Leveraging <strong>Unity</strong>, <strong>C#</strong>, and optimizing performance for semi-open-world environments.</li>
+                <li>Implementing an agile project structure to ensure the successful delivery of a 20-30 minute playable demo, which will be released on Steam by the end of the year.</li>
+            </ul>
+            <p>This project helped me strengthen my leadership skills while deepening my expertise in <strong>gameplay design</strong> and <strong>3D environment optimization</strong>.</p>
+        `,
     },
-	{
-        en: {
-		title: "DirectX12 Game Engine",
-		workdescription: "DirectX12 Game Engine EN",
-		content: "TEST EN1",
-        },
-        fr: {
-		title: "Moteur de Jeu DirectX12",
-		workdescription: "Moteur de Jeu DirectX12 Desc FR",
-		content: "TEST FR1",
-        }
+    fr: {
+        title: "Tona Fallen Zenith",
+        workdescription: "Gestion de projet et développement d'une démo Unity au sein d'une équipe pluridisciplinaire de 17 personnes.",
+        content: `
+            <p><strong>Lead du projet :</strong> Tona Fallen Zenith</p>
+            <p>En tant que Lead technique et chef de projet, j'ai dirigé une équipe de 17 étudiants au sein de Blue Mango Studio pour la réalisation d'un jeu vidéo action-aventure en 3D, inspiré de la culture aztèque. Ce projet, développé dans le cadre de notre cursus au Gaming Campus, a été une opportunité majeure pour moi d'affiner mes compétences en gestion de projet et en développement de gameplay complexe.</p>
+            <p>Mes principales responsabilités incluaient :</p>
+            <ul>
+                <li>La gestion globale de l'équipe, assurant la coordination entre les pôles artistique, développement et marketing.</li>
+                <li>La direction technique, supervisant le développement de l'environnement 3D, l'implémentation des mécaniques de gameplay, ainsi que la création et l'intégration des IA et systèmes de combat.</li>
+                <li>L'utilisation de <strong>Unity</strong>, <strong>C#</strong>, et l'optimisation des performances sur des environnements semi-ouverts.</li>
+                <li>La mise en place d'une structure de projet agile pour garantir la livraison d'une démo jouable de 20 à 30 minutes, disponible sur Steam en fin d'année.</li>
+            </ul>
+            <p>Ce projet m'a permis de renforcer mes compétences en <strong>gestion d'équipe</strong>, tout en approfondissant mes connaissances en <strong>conception de gameplay</strong> et <strong>optimisation d'environnements 3D</strong>.</p>
+        `,
+    }
+},
+{
+    en: {
+        title: "DirectX12 Game Engine",
+        workdescription: "Development of a custom game engine built from scratch using DirectX12 in just three weeks as part of a team-based school project.",
+        content: `
+            <p><strong>Technical Lead:</strong> DirectX12 Game Engine</p>
+            <p>I led the development of a custom game engine from scratch using DirectX12, as part of a challenging three-week school project. This project was a great opportunity to deepen my understanding of low-level graphics programming and engine architecture.</p>
+            <p>Key responsibilities and achievements:</p>
+            <ul>
+                <li>Structured the codebase, ensuring a clean, modular architecture for rendering, input handling, and resource management.</li>
+                <li>Collaborated with the team to implement complex graphics features, including real-time lighting and shadow mapping.</li>
+                <li>Optimized performance and memory usage for efficient rendering in DirectX12, focusing on low-level resource management.</li>
+                <li>Implemented an agile workflow to track progress, test features, and integrate various subsystems in parallel.</li>
+            </ul>
+            <p>This project helped me enhance my skills in <strong>DirectX12</strong> and <strong>engine architecture design</strong>, while strengthening my ability to lead a team through technical challenges and tight deadlines.</p>
+        `,
     },
-	{
-        en: {
-		title: "Unity Boss Fight",
-		workdescription: "Unity Boss Fight Desc EN",
-		content: "TEST EN1",
-        },
-        fr: {
-		title: "Combat de Boss Unity",
-		workdescription: "Combat de Boss Unity Desc FR",
-		content: "TEST FR1",
-        }
+    fr: {
+        title: "Moteur de Jeu DirectX12",
+        workdescription: "Développement d'un moteur de jeu custom à partir de zéro avec DirectX12 en trois semaines, dans le cadre d'un projet scolaire en équipe.",
+        content: `
+            <p><strong>Lead Technique :</strong> Moteur de Jeu DirectX12</p>
+            <p>J'ai dirigé le développement d'un moteur de jeu sur mesure, créé à partir de zéro avec DirectX12, dans le cadre d'un projet scolaire intense de trois semaines. Ce projet m'a permis de renforcer mes compétences en programmation graphique bas-niveau et en architecture de moteur.</p>
+            <p>Principales responsabilités et réalisations :</p>
+            <ul>
+                <li>Structuration de la base de code, garantissant une architecture modulaire et propre pour le rendu, la gestion des entrées et des ressources.</li>
+                <li>Collaboration avec l'équipe pour implémenter des fonctionnalités graphiques avancées, comme l'éclairage en temps réel et le mapping des ombres.</li>
+                <li>Optimisation des performances et de l'utilisation mémoire pour un rendu efficace sous DirectX12, en mettant l'accent sur la gestion des ressources bas-niveau.</li>
+                <li>Mise en place d'une méthode agile pour suivre l'avancement, tester les fonctionnalités et intégrer les différents sous-systèmes en parallèle.</li>
+            </ul>
+            <p>Ce projet m'a permis d'améliorer mes compétences en <strong>DirectX12</strong> et en <strong>conception d'architecture de moteur</strong>, tout en renforçant mes capacités à diriger une équipe face à des défis techniques dans des délais serrés.</p>
+        `,
+    }
+},
+{
+    en: {
+        title: "Unity Boss Fight",
+        workdescription: "Development of a boss fight prototype using Unity in a team of 3, completed in two weeks, including full asset integration.",
+        content: `
+            <p><strong>Team Project:</strong> Unity Boss Fight Prototype</p>
+            <p>In collaboration with two other teammates, we developed a boss fight prototype on Unity during a two-week school project. The project involved designing core gameplay mechanics and integrating all necessary game assets into the Unity engine.</p>
+            <p>Key tasks and accomplishments within the team:</p>
+            <ul>
+                <li>Collaboratively designed the boss AI, ensuring balanced and engaging combat for the players.</li>
+                <li>Worked on integrating assets, such as character models, animations, and sound effects, into the game environment.</li>
+                <li>Contributed to the development of gameplay features including player controls, hitboxes, and damage systems.</li>
+                <li>Helped optimize performance to ensure a smooth gaming experience, managing multiple assets and animations.</li>
+            </ul>
+            <p>This project reinforced my ability to work effectively within a small team while deepening my skills in <strong>Unity</strong> and <strong>gameplay systems development</strong>.</p>
+        `,
     },
-	{
-        en: {
-		title: "Minecraft Brick Breaker",
-		workdescription: "Minecraft Brick Breaker Desc EN",
-		content: "TEST EN1",
-        },
-        fr: {
-		title: "Casse Briques Minecraft",
-		workdescription: "Casse Briques Minecraft Desc FR",
-		content: "TEST FR1",
-        }
+    fr: {
+        title: "Combat de Boss Unity",
+        workdescription: "Développement d'un prototype de combat de boss sur Unity dans une équipe de 3 personnes, terminé en deux semaines, avec intégration complète des assets.",
+        content: `
+            <p><strong>Projet d'équipe :</strong> Prototype de Combat de Boss Unity</p>
+            <p>Avec deux autres coéquipiers, nous avons développé un prototype de combat de boss sur Unity dans le cadre d'un projet scolaire de deux semaines. Ce projet incluait la conception des mécaniques de gameplay principales ainsi que l'intégration des assets nécessaires dans Unity.</p>
+            <p>Tâches et réalisations principales au sein de l'équipe :</p>
+            <ul>
+                <li>Conception collaborative de l'IA du boss, garantissant des combats équilibrés et engageants pour les joueurs.</li>
+                <li>Participation à l'intégration des assets, tels que les modèles de personnages, les animations et les effets sonores, dans l'environnement du jeu.</li>
+                <li>Contribution au développement des fonctionnalités de gameplay, y compris les contrôles du joueur, les hitboxes et les systèmes de dégâts.</li>
+                <li>Aide à l'optimisation des performances pour garantir une expérience de jeu fluide, tout en gérant plusieurs assets et animations.</li>
+            </ul>
+            <p>Ce projet a renforcé ma capacité à travailler efficacement au sein d'une petite équipe tout en approfondissant mes compétences en <strong>Unity</strong> et en <strong>développement de systèmes de gameplay</strong>.</p>
+        `,
+    }
+},
+{
+    en: {
+        title: "Minecraft Brick Breaker",
+        workdescription: "Development of a Brick Breaker game using C++ and SFML in one week, focusing on dynamic gameplay mechanics.",
+        content: `
+            <p><strong>Team Project:</strong> Minecraft Brick Breaker</p>
+            <p>In collaboration with a teammate, we developed a Brick Breaker game using C++ and the SFML library within a week for a school project. The focus was on integrating dynamic gameplay mechanics to enhance the player experience.</p>
+            <p>Key tasks and contributions included:</p>
+            <ul>
+                <li>Designing the game logic and implementing core mechanics such as ball movement, paddle control, and collision detection.</li>
+                <li>Creating engaging levels with varying challenges and power-ups to keep the gameplay exciting.</li>
+                <li>Optimizing the performance of the game to ensure smooth interactions and responsive controls.</li>
+                <li>Collaborating on the graphical aspects, including sprite creation and UI design, to improve the overall aesthetic of the game.</li>
+            </ul>
+            <p>This project helped me enhance my programming skills in <strong>C++</strong> while deepening my understanding of <strong>game development</strong> using the SFML library.</p>
+        `,
     },
-	{
-        en: {
-		title: "Multiplayer Project",
-		workdescription: "Multiplayer Project Desc EN",
-		content: "TEST EN1",
-        },
-        fr: {
-		title: "Projet Multijoueur",
-		workdescription: "Projet Multijoueur Desc FR",
-		content: "TEST FR1",
-        }
+    fr: {
+        title: "Casse Briques Minecraft",
+        workdescription: "Développement d'un jeu de casse-briques en C++ et SFML en une semaine, axé sur des mécaniques de jeu dynamiques.",
+        content: `
+            <p><strong>Projet d'équipe :</strong> Casse Briques Minecraft</p>
+            <p>Avec un coéquipier, nous avons développé un jeu de casse-briques en utilisant C++ et la bibliothèque SFML en une semaine dans le cadre d'un projet scolaire. L'accent a été mis sur l'intégration de mécaniques de jeu dynamiques pour améliorer l'expérience du joueur.</p>
+            <p>Tâches et contributions clés :</p>
+            <ul>
+                <li>Conception de la logique du jeu et mise en œuvre des mécaniques principales telles que le mouvement de la balle, le contrôle de la raquette et la détection des collisions.</li>
+                <li>Création de niveaux engageants avec des défis variés et des power-ups pour maintenir l'excitation du gameplay.</li>
+                <li>Optimisation des performances du jeu pour garantir des interactions fluides et des contrôles réactifs.</li>
+                <li>Collaboration sur les aspects graphiques, y compris la création de sprites et la conception de l'interface utilisateur, pour améliorer l'esthétique globale du jeu.</li>
+            </ul>
+            <p>Ce projet m'a permis d'améliorer mes compétences en programmation en <strong>C++</strong> tout en approfondissant ma compréhension du <strong>développement de jeux</strong> avec la bibliothèque SFML.</p>
+        `,
+    }
+},
+{
+    en: {
+        title: "Multiplayer Project",
+        workdescription: "Development of a multiplayer Tic-Tac-Toe game, teaching the basics of TCP protocols and multithreading, completed in two weeks with a team of four.",
+        content: `
+            <p><strong>Team Project:</strong> Multiplayer Tic-Tac-Toe</p>
+            <p>In a team of four, we developed a multiplayer Tic-Tac-Toe game over two weeks, focusing on the foundational concepts of TCP protocols and multithreading. This project provided hands-on experience in network programming and team collaboration.</p>
+            <p>Key tasks and contributions included:</p>
+            <ul>
+                <li>Implementing the game logic and user interface to facilitate smooth gameplay between multiple players.</li>
+                <li>Designing the server-client architecture using TCP protocols to enable real-time communication.</li>
+                <li>Applying multithreading techniques to manage multiple game sessions concurrently, enhancing performance and responsiveness.</li>
+                <li>Testing and debugging the application to ensure a seamless user experience and stable connections.</li>
+            </ul>
+            <p>This project helped me deepen my understanding of <strong>network programming</strong> and improve my skills in <strong>collaborative development</strong>.</p>
+        `,
     },
-	{
-        en: {
-		title: "3DVerse Prototype",
-		workdescription: "3DVerse Prototype Desc EN",
-		content: "TEST EN1",
-        },
-        fr: {
-		title: "Prototype 3DVerse",
-		workdescription: "Prototype 3DVerse Desc FR",
-		content: "TEST FR1",
-        }
-    },];
+    fr: {
+        title: "Projet Multijoueur",
+        workdescription: "Développement d'un jeu de morpion multijoueur, enseignant les bases des protocoles TCP et du multithreading, réalisé en deux semaines avec une équipe de quatre.",
+        content: `
+            <p><strong>Projet d'équipe :</strong> Morpion Multijoueur</p>
+            <p>Dans une équipe de quatre, nous avons développé un jeu de morpion multijoueur en deux semaines, axé sur les concepts fondamentaux des protocoles TCP et du multithreading. Ce projet a offert une expérience pratique en programmation réseau et en collaboration d'équipe.</p>
+            <p>Tâches et contributions clés :</p>
+            <ul>
+                <li>Mise en œuvre de la logique du jeu et de l'interface utilisateur pour faciliter un gameplay fluide entre plusieurs joueurs.</li>
+                <li>Conception de l'architecture serveur-client utilisant les protocoles TCP pour permettre une communication en temps réel.</li>
+                <li>Application des techniques de multithreading pour gérer plusieurs sessions de jeu simultanément, améliorant les performances et la réactivité.</li>
+                <li>Tests et débogage de l'application pour garantir une expérience utilisateur fluide et des connexions stables.</li>
+            </ul>
+            <p>Ce projet m'a permis d'approfondir ma compréhension de la <strong>programmation réseau</strong> et d'améliorer mes compétences en <strong>développement collaboratif</strong>.</p>
+        `,
+    }
+},
+{
+    en: {
+        title: "3DVerse Prototype",
+        workdescription: "Development of an immersive game prototype for a client using the emerging collaborative engine 3DVerse.",
+        content: `
+            <p><strong>Client Project:</strong> 3DVerse Prototype</p>
+            <p>This project involved developing an immersive game prototype for a client using a collaborative real-time engine called 3DVerse. This experience was an exciting opportunity to explore and adapt to a new, in-development engine, presenting unique challenges along the way.</p>
+            <p>Key aspects of the project included:</p>
+            <ul>
+                <li>Learning the intricacies of the 3DVerse engine and its features, which required quick adaptation and experimentation.</li>
+                <li>Collaborating closely with the client to align the prototype's vision with their expectations, ensuring a user-focused approach.</li>
+                <li>Overcoming technical obstacles related to engine limitations and integrating new functionalities to create a seamless gameplay experience.</li>
+                <li>Testing and refining the prototype based on feedback, which enhanced both the gameplay mechanics and the overall user experience.</li>
+            </ul>
+            <p>This project allowed me to develop my skills in <strong>rapid prototyping</strong> and <strong>collaborative development</strong>, while also gaining insights into the challenges of working with emerging technologies.</p>
+        `,
+    },
+    fr: {
+        title: "Prototype 3DVerse",
+        workdescription: "Développement d'un prototype de jeu immersif pour un client utilisant le moteur collaboratif émergent 3DVerse.",
+        content: `
+            <p><strong>Projet Client :</strong> Prototype 3DVerse</p>
+            <p>Ce projet consistait à développer un prototype de jeu immersif pour un client en utilisant un moteur collaboratif en temps réel appelé 3DVerse. Cette expérience a été une occasion passionnante d'explorer et de s'adapter à un nouveau moteur en développement, présentant des défis uniques tout au long du processus.</p>
+            <p>Aspects clés du projet :</p>
+            <ul>
+                <li>Apprentissage des subtilités du moteur 3DVerse et de ses fonctionnalités, nécessitant une adaptation rapide et des expérimentations.</li>
+                <li>Collaboration étroite avec le client pour aligner la vision du prototype sur ses attentes, garantissant une approche centrée sur l'utilisateur.</li>
+                <li>Surmonter des obstacles techniques liés aux limitations du moteur et intégrer de nouvelles fonctionnalités pour créer une expérience de jeu fluide.</li>
+                <li>Tester et affiner le prototype en fonction des retours, ce qui a amélioré à la fois les mécaniques de jeu et l'expérience utilisateur globale.</li>
+            </ul>
+            <p>Ce projet m'a permis de développer mes compétences en <strong>prototypage rapide</strong> et en <strong>développement collaboratif</strong>, tout en acquérant des connaissances sur les défis liés aux technologies émergentes.</p>
+        `,
+    }
+},];
 
 	let id = document.getElementById('page-id').value;
     let language = 'en';  // Langue par défaut
     let translation = translations[id][language] || {};
 
-	document.getElementById('content').textContent = translation.content;
+	document.getElementById('content').innerHTML = translation.content;
 	document.getElementById('title').textContent = translation.title;
 	document.getElementById('work-description').textContent = translation.workdescription;
 
@@ -239,7 +386,7 @@ const { Content } = await entry.render();
       translation = translations[id][language] || {};
 
       // Mise à jour dynamique du contenu
-	  document.getElementById('content').textContent = translation.content;
+	  document.getElementById('content').innerHTML = translation.content;
 	  document.getElementById('title').textContent = translation.title;
 	  document.getElementById('work-description').textContent = translation.workdescription;
     };
